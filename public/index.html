@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Implement Log Watcher</title>
+</head>
+<script src = "/socket.io/socket.io.js"></script>
+<script>
+    let socket = io("ws://localhost:3000");
+    socket.on('log-update', function(data){
+        console.log(data);
+        for(elem of data) document.getElementById('message-container').innerHTML+= '<p>' + elem + '</br><p>';
+    });
+    socket.on('init', function(data){
+        console.log(data);
+        for(elem of data) document.getElementById('message-container').innerHTML+= '<p>' + elem  + '</br><p>';
+    });
+</script>
+<body>
+    <h1> Log Monitoring Application</h1>
+    <div id = "message-container"></div>
+</body>
+</html>
